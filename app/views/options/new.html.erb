@@ -1,0 +1,9 @@
+<h2>New Option</h2>
+<%= form_with model: @option do |form| %>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

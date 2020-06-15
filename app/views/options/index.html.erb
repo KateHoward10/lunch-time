@@ -1,4 +1,5 @@
 <h2>Options</h2>
+<%= link_to "New option", new_option_path %>
 <ul>
   <% @options.each do |o| %>
     <li><%= o.description %></li>
