@@ -5,9 +5,6 @@ class MenusController < ApplicationController
     @menus = Menu.all
   end
 
-  def show
-  end
-
   def new
     @menu = Menu.new
     @menu.menu_options.build

@@ -1,5 +1,16 @@
-<h2>Menus</h2>
-<%= link_to "New menu", new_menu_path %>
-<% @menus.each do |m| %>
-  <div><%= m.date %></div>
-<% end %>
+<div class="flex flex-row justify-between mb-2">
+  <h2 class="text-xl">Menus</h2>
+  <%= link_to "New menu", new_menu_path, class: "bg-teal-400 text-white rounded p-1" %>
+</div>
+<div class="grid md:grid-cols-2 gap-2">
+  <% @menus.each do |m| %>
+    <div class="rounded shadow-lg p-2 bg-white">
+      <h3><%= m.date.strftime("%a %e %b %y") %></h3>
+      <ul>
+        <% m.options.each do |option| %>
+          <li class="text-sm"><%= option.description %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

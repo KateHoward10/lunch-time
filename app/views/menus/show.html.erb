@@ -1,8 +1,0 @@
-<h2>Menu for <%= @menu.date %></h2>
-<% if @menu.options.any? %>
-  <ul>
-    <% @menu.options.each do |option| %>
-      <li><%= option.description %></li>
-    <% end %>
-  </ul>
-<% end %>
