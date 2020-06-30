@@ -1,9 +1,2 @@
 <h2>New Menu</h2>
-<%= form_with model: @menu do |form| %>
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.date_field :date %>
-  </div>
-
-  <%= form.submit %>
-<% end %>
+<%= render 'form' %>

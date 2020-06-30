@@ -1,0 +1,12 @@
+<%= form_with model: @menu do |form| %>
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div class="field">
+    <%= form.collection_select :option_ids, Option.all, :id, :description, {}, {multiple: true} %>
+  </div>
+
+  <%= form.submit %>
+<% end %>
