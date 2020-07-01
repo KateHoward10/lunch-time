@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  before_action :set_menu, only: [:show]
+  before_action :set_menu, only: [:edit, :update]
   
   def index
     @menus = Menu.all
@@ -10,13 +10,25 @@ class MenusController < ApplicationController
     @menu.menu_options.build
   end
 
+  def edit
+  end
+
   def create
     @menu = Menu.new(menu_params)
-
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to menus_path, notice: 'Menu was successfully created' }
-        format.json { render :index, status: :created }
+        format.html { redirect_to action: "index" }
+      else
+        format.html { render :new }
+        format.json { render json: @menu.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @menu.update
+        format.html { redirect_to action: "index" }
       else
         format.html { render :new }
         format.json { render json: @menu.errors, status: :unprocessable_entity }

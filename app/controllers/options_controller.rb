@@ -1,19 +1,30 @@
 class OptionsController < ApplicationController
-  before_action :set_option, only: [:show]
+  before_action :set_option, only: [:edit, :update]
 
   def index
     @options = Option.all
-  end
-
-  def show
   end
 
   def new
     @option = Option.new
   end
 
+  def edit
+  end
+
   def create
     @option = Option.new(option_params)
+    respond_to do |format|
+      if @option.save
+        format.html { redirect_to action: "index" }
+      else
+        format.html { render :new }
+        format.json { render json: @option.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
     respond_to do |format|
       if @option.save
         format.html { redirect_to action: "index" }
