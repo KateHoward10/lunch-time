@@ -1,12 +1,17 @@
 <%= form_with model: @menu do |form| %>
-  <div class="field">
+  <div class="py-3">
     <%= form.label :date %>
     <%= form.date_field :date %>
   </div>
 
-  <div class="field">
-    <%= form.collection_select :option_ids, Option.all, :id, :description, {}, {multiple: true} %>
+  <div class="py-3 flex flex-col">
+    <small>Please tick all the options available for this menu</small>
+    <%= form.collection_check_boxes :option_ids, Option.all, :id, :description, {}, {multiple: true} do |b| %>
+      <%= b.label do %>
+        <%= b.check_box %> <%= b.text %>
+      <% end %>
+    <% end %>
   </div>
 
-  <%= form.submit %>
+  <%= form.submit class: "bg-teal-400 text-white rounded p-1" %>
 <% end %>
