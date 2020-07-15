@@ -3,12 +3,9 @@ class SessionsController < ApplicationController
   def omniauth
     @user = User.from_omniauth(auth)
     session[:user_id] = @user.id
-    if User.find(@user.id) && @user.organisation
-      redirect_to menus_path
-    else
-      @user.save
-      redirect_to new_organisation_path
-    end
+    user_exists = !!(User.where(email: @user.email) && @user.organisation)
+    @user.save
+    redirect_to user_exists ? menus_path : new_organisation_path
   end
 
   def destroy
