@@ -2,9 +2,18 @@ class SessionsController < ApplicationController
 
   def omniauth
     @user = User.from_omniauth(auth)
-    @user.save
     session[:user_id] = @user.id
-    redirect_to menus_path
+    if User.find(@user.id) && @user.organisation
+      redirect_to menus_path
+    else
+      @user.save
+      redirect_to new_organisation_path
+    end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path
   end
 
   private
