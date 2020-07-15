@@ -1,0 +1,11 @@
+<div class="flex flex-row justify-between mb-2">
+  <h2 class="text-xl">Users in <%= current_user.organisation.name %></h2>
+  <%= link_to "New user", new_user_path, class: "bg-teal-400 text-white rounded p-1" %>
+</div>
+<ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+  <% @users.each do |u| %>
+    <li class="rounded shadow-lg p-2 bg-white flex flex-row justify-between">
+      <%= u.name || u.email %>
+    </li>
+  <% end %>
+</ul>

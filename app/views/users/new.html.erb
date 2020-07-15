@@ -1,0 +1,9 @@
+<h2 class="text-xl">New User</h2>
+<%= form_with model: @user do |form| %>
+  <div class="py-3 flex flex-col">
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <%= form.submit class: "bg-teal-400 text-white rounded p-1" %>
+<% end %>
