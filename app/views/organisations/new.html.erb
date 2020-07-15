@@ -1,0 +1,11 @@
+<h2 class="text-xl">New Organisation</h2>
+<p>You have signed in successfully with Google</p>
+<p>Please create a new organisation to start adding users and menus.</p>
+<%= form_with model: @organisation do |form| %>
+  <div class="py-3 flex flex-col">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <%= form.submit class: "bg-teal-400 text-white rounded p-1" %>
+<% end %>
