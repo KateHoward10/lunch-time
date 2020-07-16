@@ -2,7 +2,7 @@ class MenusController < ApplicationController
   before_action :set_menu, only: [:edit, :update]
   
   def index
-    @menus = Menu.all
+    @menus = Menu.where(organisation: helpers.current_user.organisation)
   end
 
   def new
@@ -15,6 +15,7 @@ class MenusController < ApplicationController
 
   def create
     @menu = Menu.new(menu_params)
+    @menu.organisation = helpers.current_user.organisation
     respond_to do |format|
       if @menu.save
         format.html { redirect_to action: "index" }
