@@ -13,8 +13,9 @@ class OrganisationsController < ApplicationController
       if @organisation.save
         @user = helpers.current_user
         @user.organisation = @organisation
+        @user.admin = true
         @user.save
-        format.html { redirect_to action: "index" }
+        format.html { redirect_to menus_path }
       else
         format.html { render :new }
         format.json { render json: @organisation.errors, status: :unprocessable_entity }
