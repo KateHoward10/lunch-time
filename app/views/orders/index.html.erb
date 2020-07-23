@@ -6,9 +6,10 @@
     <div class="rounded shadow-lg p-2 bg-white flex flex-row justify-between">
       <div>
         <h3><%= o.date.strftime("%a %e %b %y") %></h3>
-        <p><%= o.user.name %></p>
+        <p><%= o.user.name || o.user.email %></p>
+        <p><%= o.option.description %></p>
+        <p><%= o.notes %></p>
       </div>
-      <%= link_to "Edit", edit_order_path(m) %>
     </div>
   <% end %>
 </div>

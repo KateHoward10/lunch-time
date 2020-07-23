@@ -6,6 +6,8 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @order = Order.new
+    @menu = Menu.find(params[:menu])
   end
 
   def edit
@@ -16,7 +18,7 @@ class OrdersController < ApplicationController
     @order.user = helpers.current_user
     respond_to do |format|
       if @order.save
-        format.html { redirect_to action: "index" }
+        format.html { redirect_to menus_path }
       else
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -27,7 +29,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update
-        format.html { redirect_to action: "index" }
+        format.html { redirect_to menus_path }
       else
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -41,6 +43,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:date, :notes)
+      params.require(:order).permit(:date, :option_id, :notes)
     end
 end

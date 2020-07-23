@@ -1,0 +1,19 @@
+<%= form_with model: @order do |form| %>
+  <%= form.hidden_field :date, value: @menu.date %>
+
+  <div class="py-3 flex flex-col">
+    <%= form.collection_select :option_id, @menu.options, :id, :description do |b| %>
+      <%= b.label do %>
+        <%= b.check_box %> <%= b.text %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="py-3 flex flex-col">
+    <small>Please add any notes e.g. likes / dislikes</small>
+    <%= form.label :notes %>
+    <%= form.text_field :notes %>
+  </div>
+
+  <%= form.submit class: "bg-teal-400 text-white rounded p-1" %>
+<% end %>
