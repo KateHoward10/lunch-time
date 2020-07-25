@@ -1,7 +1,9 @@
 <div class="flex flex-row justify-between mb-2">
   <h2 class="text-xl">Menus</h2>
   <% if current_user.try(:admin?) %>
-    <%= link_to "New menu", new_menu_path, class: "bg-teal-400 text-white rounded p-1" %>
+    <%= link_to new_menu_path, class: "bg-teal-400 text-white rounded p-1" do %>
+      <%= fa_icon "plus" %> New menu
+    <% end %>
   <% end %>
 </div>
 <div class="grid md:grid-cols-2 gap-2">
@@ -16,7 +18,9 @@
         </ul>
       </div>
       <% if current_user.try(:admin?) %>
-        <%= link_to "Edit", edit_menu_path(m) %>
+        <%= link_to  edit_menu_path(m) do %>
+          <%= fa_icon "edit" %> Edit
+        <% end %>
       <% else %>
         <%= link_to "Order", new_order_path(menu: m) %>
       <% end %>

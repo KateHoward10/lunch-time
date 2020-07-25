@@ -1,12 +1,16 @@
 <div class="flex flex-row justify-between mb-2">
   <h2 class="text-xl">Options</h2>
-  <%= link_to "New option", new_option_path, class: "bg-teal-400 text-white rounded p-1" %>
+  <%= link_to new_option_path, class: "bg-teal-400 text-white rounded p-1" do %>
+    <%= fa_icon "plus" %> New option
+  <% end %>
 </div>
 <ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
   <% @options.each do |o| %>
     <li class="rounded shadow-lg p-2 bg-white flex flex-row justify-between">
       <%= o.description %>
-      <%= link_to "Edit", edit_option_path(o) %>
+      <%= link_to edit_option_path(o) do %>
+        <%= fa_icon "edit" %> Edit
+      <% end %>
     </li>
   <% end %>
 </ul>

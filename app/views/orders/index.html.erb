@@ -5,10 +5,14 @@
   <% @orders.each do |o| %>
     <div class="rounded shadow-lg p-2 bg-white flex flex-row justify-between">
       <div>
-        <h3><%= o.date.strftime("%a %e %b %y") %></h3>
-        <p><%= o.user.name || o.user.email %></p>
-        <p><%= o.option.description %></p>
-        <p><%= o.notes %></p>
+        <h3><%= fa_icon "calendar-o" %> <%= o.date.strftime("%a %e %b %y") %></h3>
+        <p class="text-sm"><%= fa_icon "user-circle" %> <%= o.user.name || o.user.email %></p>
+        <p class="text-sm">
+          <%= fa_icon "cutlery" %> <%= o.option.description %>
+          <% if o.notes.length %>
+            • <%= o.notes %>
+          <% end %>
+        </p>
       </div>
     </div>
   <% end %>
