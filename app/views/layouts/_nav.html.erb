@@ -1,4 +1,4 @@
-<nav class="bg-teal-500">
+<nav class="bg-<%= current_user.try(:admin?) ? 'blue' : 'teal' %>-500">
   <div class="flex items-center justify-between flex-wrap max-w-5xl m-auto p-6">
     <div class="flex items-center flex-shrink-0 text-white mr-6">
       <%= link_to "Lunch Time", root_path, class: "font-semibold text-xl tracking-tight" %>

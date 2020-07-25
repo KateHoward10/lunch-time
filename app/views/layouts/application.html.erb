@@ -14,7 +14,9 @@
   </head>
 
   <body class="bg-gray-200">
-    <%= render 'layouts/nav' %>
+    <% if logged_in? %>
+      <%= render 'layouts/nav' %>
+    <% end %>
     <main class="px-6 py-4 max-w-5xl m-auto">
       <%= yield %>
     </main>
