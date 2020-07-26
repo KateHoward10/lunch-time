@@ -1,4 +1,5 @@
 class OptionsController < ApplicationController
+  before_action :require_admin!
   before_action :set_option, only: [:edit, :update]
 
   def index
@@ -36,6 +37,13 @@ class OptionsController < ApplicationController
   end
 
   private
+    def require_admin!
+      if !helpers.current_user.try(:admin?)
+        redirect_to menus_path
+        flash[:alert] = "You must be an admin to view options."
+      end
+    end
+
     def set_option
       @option = Option.find(params[:id])
     end

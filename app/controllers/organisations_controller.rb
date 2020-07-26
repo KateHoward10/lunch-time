@@ -1,4 +1,5 @@
 class OrganisationsController < ApplicationController
+  before_action :require_admin!
   
   def new
     @organisation = Organisation.new
@@ -24,6 +25,13 @@ class OrganisationsController < ApplicationController
   end
 
   private
+    def require_admin!
+      if !helpers.current_user.try(:admin?)
+        redirect_to menus_path
+        flash[:alert] = "You must be an admin to edit organisations."
+      end
+    end
+
     def organisation_params
       params.require(:organisation).permit(:name)
     end

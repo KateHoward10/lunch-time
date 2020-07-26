@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_admin!, except: [:index]
   def index
     @users = User.where(organisation: helpers.current_user.organisation)
   end
@@ -21,6 +22,13 @@ class UsersController < ApplicationController
   end
 
   private
+    def require_admin!
+      if !helpers.current_user.try(:admin?)
+        redirect_to menus_path
+        flash[:alert] = "You must be an admin to edit users."
+      end
+    end
+
     def user_params
       params.require(:user).permit(:email)
     end

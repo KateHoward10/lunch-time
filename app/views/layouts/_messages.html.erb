@@ -1,0 +1,8 @@
+<% flash.each do |key, value| %>
+  <div class="bg-<%= key == 'error' ? 'red' : key == 'alert' ? 'yellow' : 'teal' %>-200 border border-<%= key == 'error' ? 'red' : key == 'alert' ? 'yellow' : 'teal' %>-400 px-4 py-3 rounded flex flex-row justify-between" role="alert">
+    <span>
+      <%= value %>
+    </span>
+    <a href="#" data-dismiss="alert" class="close"><%= fa_icon "times" %></a>
+  </div>
+<% end %>

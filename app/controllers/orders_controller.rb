@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :require_user!
   before_action :set_order, only: [:edit, :update]
   
   def index
@@ -38,6 +39,13 @@ class OrdersController < ApplicationController
   end
 
   private
+    def require_user!
+      if !helpers.logged_in?
+        redirect_to root_path
+        flash[:alert] = "You must be logged in to view orders."
+      end
+    end
+
     def set_order
       @order = Order.find(params[:id])
     end

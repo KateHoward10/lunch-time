@@ -1,4 +1,5 @@
 class MenusController < ApplicationController
+  before_action :require_user!
   before_action :set_menu, only: [:edit, :update]
   
   def index
@@ -38,6 +39,13 @@ class MenusController < ApplicationController
   end
 
   private
+    def require_user!
+      if !helpers.logged_in?
+        redirect_to root_path
+        flash[:alert] = "You must be logged in to view menus."
+      end
+    end
+
     def set_menu
       @menu = Menu.find(params[:id])
     end
