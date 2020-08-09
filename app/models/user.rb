@@ -9,6 +9,7 @@ class User < ApplicationRecord
     where(email: auth.info.email).first_or_create do |user|
       user.name = auth.info.name
       user.email = auth.info.email
+      user.photo = auth.info.image
       user.google_token = auth.credentials.token
       user.google_refresh_token = auth.credentials.refresh_token
     end

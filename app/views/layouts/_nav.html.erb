@@ -18,9 +18,14 @@
         <% end %>
       </div>
       <% if logged_in? %>
-        <%= link_to logout_path, class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" do %>
-          <%= fa_icon "sign-out" %> Log out
-        <% end %>
+        <div class="flex flex-row items-center mt-4 lg:mt-0">
+          <% if current_user.photo %>
+            <%= image_tag current_user.photo, size: "30x30" %>
+          <% end %>
+          <%= link_to logout_path, class: "ml-3 text-teal-200 hover:text-white mr-4" do %>
+            <%= fa_icon "sign-out" %> Log out
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
