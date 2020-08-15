@@ -1,19 +1,21 @@
 <div class="flex flex-row justify-between mb-2">
   <h2 class="text-xl">Orders</h2>
 </div>
-<div class="grid md:grid-cols-2 gap-2">
-  <% @orders.each do |o| %>
-    <div class="rounded shadow-lg p-2 bg-white flex flex-row justify-between">
-      <div>
-        <h3><%= fa_icon "calendar-o" %> <%= o.date.strftime("%a %e %b %y") %></h3>
-        <p class="text-sm"><%= fa_icon "user-circle" %> <%= o.user.name || o.user.email %></p>
-        <p class="text-sm">
-          <%= fa_icon "cutlery" %> <%= o.option.description %>
-          <% if o.notes.length %>
-            • <%= o.notes %>
-          <% end %>
-        </p>
+<% @order_lists.each do |ol| %>
+  <h3><%= fa_icon "calendar-o" %> <%= ol[:date].strftime("%a %e %b %y") %></h3>
+  <div class="grid md:grid-cols-2 gap-2">
+    <% ol[:orders].each do |o| %>
+      <div class="rounded shadow-lg p-2 bg-white flex flex-row justify-between">
+        <div>
+          <p class="text-sm"><%= fa_icon "user-circle" %> <%= o.user.name || o.user.email %></p>
+          <p class="text-sm">
+            <%= fa_icon "cutlery" %> <%= o.option.description %>
+            <% if o.notes.present? %>
+              • <%= o.notes %>
+            <% end %>
+          </p>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>

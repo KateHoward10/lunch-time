@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
   
   def index
     @orders = Order.all
+    dates = @orders.pluck(:date).uniq
+    @order_lists = dates.map { |d| {date: d, orders: @orders.where(date: d)} }
   end
 
   def new
